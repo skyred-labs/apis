@@ -2,16 +2,8 @@
   "name": "simple-calculator-api",
   "version": "1.0.0",
   "description": "API đơn giản để tính tổng 2 số",
-  "main": "api/add.js",
-  "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'No build step required'",
-    "start": "node api/add.js"
-  },
+  "type": "module",
   "keywords": ["api", "calculator", "vercel"],
   "author": "ThangPv",
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "license": "MIT"
 }
