@@ -2,7 +2,6 @@
   "name": "simple-calculator-api",
   "version": "1.0.0",
   "description": "API đơn giản để tính tổng 2 số",
-  "type": "module",
   "keywords": ["api", "calculator", "vercel"],
   "author": "ThangPv",
   "license": "MIT"
