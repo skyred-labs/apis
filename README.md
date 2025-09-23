@@ -1,15 +1,17 @@
-# Simple Calculator API
+# Simple Calculator & User Management API
 
-API đơn giản để tính tổng 2 số nguyên, được deploy trên Vercel.
+API đơn giản để tính tổng 2 số và quản lý users, được deploy trên Vercel với database.
 
-## Cách sử dụng
+## 🚀 Cách sử dụng
 
-### Endpoint
+### 1. Calculator API
+
+#### Endpoint
 ```
 POST /api/add
 ```
 
-### Request Body
+#### Request Body
 ```json
 {
   "a": 5,
@@ -17,7 +19,7 @@ POST /api/add
 }
 ```
 
-### Response thành công
+#### Response
 ```json
 {
   "success": true,
@@ -30,36 +32,109 @@ POST /api/add
 }
 ```
 
-### Response lỗi
+### 2. User Management API
+
+#### Add User
+```
+POST /api/users/add
+```
+
+**Request Body:**
 ```json
 {
-  "error": "Thiếu tham số. Vui lòng gửi cả 2 số a và b.",
-  "example": {
-    "a": 5,
-    "b": 3
+  "name": "Nguyễn Văn A",
+  "email": "user@example.com"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "User đã được thêm thành công!",
+  "user": {
+    "id": 1,
+    "name": "Nguyễn Văn A",
+    "email": "user@example.com",
+    "created_at": "2025-09-21T16:00:00.000Z"
   }
 }
 ```
 
-## Test API
+#### Get Users List
+```
+GET /api/users/list?page=1&limit=10
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Lấy danh sách users thành công!",
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Nguyễn Văn A",
+        "email": "user@example.com",
+        "created_at": "2025-09-21T16:00:00.000Z"
+      }
+    ],
+    "pagination": {
+      "currentPage": 1,
+      "totalPages": 1,
+      "totalUsers": 1,
+      "limit": 10,
+      "hasNextPage": false,
+      "hasPrevPage": false
+    }
+  }
+}
+```
+
+### 3. Static Files
+
+#### View Images
+```
+https://apis-smoky-nine.vercel.app/anh1.png
+https://apis-smoky-nine.vercel.app/question1.png
+```
+
+## 🧪 Test API
 
 ### Sử dụng curl
+
+**Calculator:**
 ```bash
-curl -X POST https://your-app.vercel.app/api/add \
+curl -X POST https://apis-smoky-nine.vercel.app/api/add \
   -H "Content-Type: application/json" \
   -d '{"a": 10, "b": 20}'
 ```
 
+**Add User:**
+```bash
+curl -X POST https://apis-smoky-nine.vercel.app/api/users/add \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Test User", "email": "test@example.com"}'
+```
+
+**Get Users:**
+```bash
+curl https://apis-smoky-nine.vercel.app/api/users/list
+```
+
 ### Sử dụng JavaScript (fetch)
+
 ```javascript
-const response = await fetch('https://your-app.vercel.app/api/add', {
+// Add user
+const response = await fetch('https://apis-smoky-nine.vercel.app/api/users/add', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    a: 10,
-    b: 20
+    name: 'Test User',
+    email: 'test@example.com'
   })
 });
 
@@ -67,42 +142,62 @@ const result = await response.json();
 console.log(result);
 ```
 
-## Deploy lên Vercel
+## 🗄️ Database Setup
 
-1. Cài đặt Vercel CLI:
-```bash
-npm i -g vercel
-```
+### Vercel Postgres
+1. **Vào Vercel Dashboard** → Project của bạn
+2. **Storage** → **Create Database** → **Postgres**
+3. **Copy connection string** và thêm vào Environment Variables
+4. **Redeploy** project
 
-2. Login vào Vercel:
-```bash
-vercel login
-```
+### Environment Variables cần thiết:
+- `POSTGRES_URL`
+- `POSTGRES_PRISMA_URL`
+- `POSTGRES_URL_NON_POOLING`
+- `POSTGRES_USER`
+- `POSTGRES_HOST`
+- `POSTGRES_PASSWORD`
+- `POSTGRES_DATABASE`
 
-3. Deploy project:
-```bash
-vercel
-```
-
-4. Hoặc deploy production:
-```bash
-vercel --prod
-```
-
-## Cấu trúc project
+## 📁 Cấu trúc project
 
 ```
 apis/
 ├── api/
-│   └── add.js          # API endpoint chính
-├── package.json        # Dependencies và scripts
-├── vercel.json         # Cấu hình Vercel
-└── README.md          # Hướng dẫn sử dụng
+│   ├── add.js              # Calculator API
+│   ├── test.js             # Test API
+│   └── users/
+│       ├── add.js          # Add user API
+│       └── list.js         # Get users list API
+├── public/
+│   ├── anh1.png           # Static image
+│   └── question1.png      # Static image
+├── package.json           # Dependencies
+├── vercel.json           # Vercel configuration
+└── README.md             # Documentation
 ```
 
-## Lưu ý
+## 🚀 Deploy lên Vercel
 
-- API chỉ chấp nhận method POST
-- Cả 2 tham số `a` và `b` phải là số nguyên
-- API sẽ trả về lỗi nếu thiếu tham số hoặc tham số không hợp lệ
-test apis
+1. **Push code lên GitHub**
+2. **Connect Vercel với GitHub repository**
+3. **Setup Vercel Postgres database**
+4. **Add Environment Variables**
+5. **Deploy!**
+
+## ✨ Tính năng
+
+- ✅ **Calculator API** - Tính tổng 2 số
+- ✅ **User Management** - Thêm và lấy danh sách users
+- ✅ **Database Integration** - Vercel Postgres
+- ✅ **Static File Serving** - Serve ảnh từ public/
+- ✅ **Pagination** - Phân trang cho danh sách users
+- ✅ **Error Handling** - Xử lý lỗi chi tiết
+- ✅ **Input Validation** - Kiểm tra dữ liệu đầu vào
+
+## 🔧 Lưu ý
+
+- API chỉ chấp nhận method được chỉ định
+- Email phải unique (không trùng lặp)
+- Pagination: page >= 1, limit từ 1-100
+- Database sẽ tự động tạo bảng khi cần

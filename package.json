@@ -1,8 +1,11 @@
 {
   "name": "simple-calculator-api",
   "version": "1.0.0",
-  "description": "API đơn giản để tính tổng 2 số",
-  "keywords": ["api", "calculator", "vercel"],
+  "description": "API đơn giản để tính tổng 2 số và quản lý users",
+  "keywords": ["api", "calculator", "vercel", "database"],
   "author": "ThangPv",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/postgres": "^0.5.1"
+  }
 }
