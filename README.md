@@ -36,7 +36,7 @@ POST /api/add
 
 #### Add User
 ```
-POST /api/users/add
+POST /api/users-add
 ```
 
 **Request Body:**
@@ -63,7 +63,7 @@ POST /api/users/add
 
 #### Get Users List
 ```
-GET /api/users/list?page=1&limit=10
+GET /api/users-list?page=1&limit=10
 ```
 
 **Response:**
@@ -113,21 +113,21 @@ curl -X POST https://apis-smoky-nine.vercel.app/api/add \
 
 **Add User:**
 ```bash
-curl -X POST https://apis-smoky-nine.vercel.app/api/users/add \
+curl -X POST https://apis-smoky-nine.vercel.app/api/users-add \
   -H "Content-Type: application/json" \
   -d '{"name": "Test User", "email": "test@example.com"}'
 ```
 
 **Get Users:**
 ```bash
-curl https://apis-smoky-nine.vercel.app/api/users/list
+curl https://apis-smoky-nine.vercel.app/api/users-list
 ```
 
 ### Sử dụng JavaScript (fetch)
 
 ```javascript
 // Add user
-const response = await fetch('https://apis-smoky-nine.vercel.app/api/users/add', {
+const response = await fetch('https://apis-smoky-nine.vercel.app/api/users-add', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -166,9 +166,9 @@ apis/
 ├── api/
 │   ├── add.js              # Calculator API
 │   ├── test.js             # Test API
-│   └── users/
-│       ├── add.js          # Add user API
-│       └── list.js         # Get users list API
+│   ├── users-add.js        # Add user API
+│   ├── users-list.js       # Get users list API
+│   └── users-test.js       # Users test API
 ├── public/
 │   ├── anh1.png           # Static image
 │   └── question1.png      # Static image
