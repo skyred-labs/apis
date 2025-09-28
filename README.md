@@ -173,6 +173,8 @@ apis/
 │   ├── anh1.png           # Static image
 │   └── question1.png      # Static image
 ├── package.json           # Dependencies
+├── server.js             # Express server (cho Render)
+├── render.yaml           # Render configuration
 ├── vercel.json           # Vercel configuration
 └── README.md             # Documentation
 ```
@@ -184,6 +186,36 @@ apis/
 3. **Setup Vercel Postgres database**
 4. **Add Environment Variables**
 5. **Deploy!**
+
+## 🚀 Deploy lên Render
+
+### Cách 1: Sử dụng render.yaml (Khuyến nghị)
+1. **Push code lên GitHub**
+2. **Vào [render.com](https://render.com)** và đăng nhập
+3. **New** → **Web Service**
+4. **Connect GitHub repository**
+5. **Render sẽ tự động detect render.yaml**
+6. **Deploy!**
+
+### Cách 2: Manual setup
+1. **Vào [render.com](https://render.com)**
+2. **New** → **Web Service**
+3. **Connect GitHub repository**
+4. **Cấu hình:**
+   - **Name:** `simple-calculator-api`
+   - **Environment:** `Node`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+   - **Health Check Path:** `/health`
+5. **Deploy!**
+
+### Database trên Render
+1. **New** → **PostgreSQL**
+2. **Tạo database mới**
+3. **Copy connection string**
+4. **Add Environment Variables:**
+   - `DATABASE_URL` = connection string
+5. **Redeploy service**
 
 ## ✨ Tính năng
 

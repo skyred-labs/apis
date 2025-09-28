@@ -2,10 +2,20 @@
   "name": "simple-calculator-api",
   "version": "1.0.0",
   "description": "API đơn giản để tính tổng 2 số và quản lý users",
-  "keywords": ["api", "calculator", "vercel", "database"],
+  "main": "server.js",
+  "keywords": ["api", "calculator", "vercel", "database", "render"],
   "author": "ThangPv",
   "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
   "dependencies": {
-    "@vercel/postgres": "^0.5.1"
+    "@vercel/postgres": "^0.5.1",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
